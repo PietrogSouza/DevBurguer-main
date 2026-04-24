@@ -1,0 +1,182 @@
+{% extends "layout.html" %}
+
+{% block css_adicional %}
+<link rel="stylesheet" href="../static/css/login.css">
+<style>
+    /* Estilos específicos para a estrutura de autenticação */
+    :root {
+        --primary-blue: #2c3e50;
+        --orange-btn: #f39c12;
+        --bg-light: #f8f9fa;
+        --text-dark: #343a40;
+        --white: #ffffff;
+        --border-gray: #ced4da;
+        --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        gap: 30px;
+        padding: 50px 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+        min-height: 80vh;
+        flex-wrap: wrap;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .auth-card {
+        background: var(--white);
+        flex: 1;
+        min-width: 320px;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        border-top: 6px solid var(--primary-blue);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+    }
+
+    .auth-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .auth-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.6rem;
+        color: var(--primary-blue);
+        margin-bottom: 25px;
+        font-weight: 700;
+    }
+
+    .auth-title .material-symbols-outlined {
+        font-size: 32px;
+    }
+
+    .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .input-group label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .input-group input {
+        padding: 12px 15px;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .input-group input:focus {
+        outline: none;
+        border-color: var(--primary-blue);
+        background-color: #fff;
+        box-shadow: 0 0 0 4px rgba(44, 62, 80, 0.1);
+    }
+
+    .btn-auth {
+        margin-top: 10px;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: white;
+        transition: filter 0.2s, transform 0.1s;
+    }
+
+    .btn-auth:active {
+        transform: scale(0.98);
+    }
+
+    .btn-login {
+        background-color: var(--primary-blue);
+    }
+
+    .btn-register {
+        background-color: var(--orange-btn);
+    }
+
+    .btn-auth:hover {
+        filter: brightness(1.1);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .auth-container {
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .auth-card {
+            min-width: 100%;
+            padding: 25px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block conteudo %} 
+<main class="auth-container">
+    <section class="auth-card">
+        <h2 class="auth-title">
+            <span class="material-symbols-outlined">login</span>
+            Já sou cliente
+        </h2>
+        <form action="#" method="POST" class="auth-form">
+            <div class="input-group">
+                <label for="login-email">Usuário</label>
+                <input type="email" id="login-email" name="email" placeholder="Digite seu e-mail" required>
+            </div>
+            <div class="input-group">
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" name="password" placeholder="Sua senha" required>
+            </div>
+            <button type="submit" class="btn-auth btn-login">Entrar no Sistema</button>
+        </form>
+    </section>
+
+    <section class="auth-card" style="border-top-color: var(--orange-btn);">
+        <h2 class="auth-title" style="color: var(--orange-btn);">
+            <span class="material-symbols-outlined"></span>
+            Criar Conta
+        </h2>
+        <form action="/cadastrar" method="POST" class="auth-form">
+            <div class="input-group">
+                <label for="reg-name">Nome Completo</label>
+                <input type="text" id="reg-name" name="nome" placeholder="Seu nome completo" required>
+            </div>
+            <div class="input-group">
+                <label for="reg-user">Usuário</label>
+                <input type="text" id="reg-user" name="usuario" placeholder="Escolha um usuário" required>
+            </div>
+            <div class="input-group">
+                <label for="reg-password">Senha</label>
+                <input type="password" id="reg-password" name="senha" placeholder="Crie uma senha forte" required>
+            </div>
+            <button type="submit" class="btn-auth btn-register">Finalizar Cadastro</button>
+        </form>
+    </section>
+</main>
+{% endblock %}

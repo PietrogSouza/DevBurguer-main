@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block conteudo %}
+<body>
+    <link rel="stylesheet" href="/static/css/detalhes.css">
+    <main class="product-page">
+        <div class="product-visual">
+            <span class="badge">🔥 Mais Pedido</span>
+            <img src="{{ rcp.foto }}" alt="Burger">
+            <script></script>
+            <div class="extra-box" style="margin-top: 30px;">
+                <span class="extra-title">Informações Nutricionais</span>
+                <p style="font-size: 0.85rem; color: #777;">Calorias: 850kcal | Proteínas: 45g | Carboidratos: 38g</p>
+            </div>
+        </div>
+        <div class="product-info">
+            <h1>{{ rcp.produto }}</h1>
+            <div class="stars">
+                <span class="material-symbols-outlined" style="font-size: 18px; fill: 1;">star</span>
+                <span class="material-symbols-outlined" style="font-size: 18px; fill: 1;">star</span>
+                <span class="material-symbols-outlined" style="font-size: 18px; fill: 1;">star</span>
+                <span class="material-symbols-outlined" style="font-size: 18px; fill: 1;">star</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">star_half</span>
+                <span style="color: #888; font-size: 0.9rem;">(120+ avaliações)</span>
+            </div>
+
+            <p class="price-tag">R$ {{rcp.preco}}</p>
+
+            <div class="qty-selector">
+                <span>Quantidade:</span>
+                <button class="qty-btn">-</button>
+                <span style="font-weight: bold; font-size: 1.2rem;">1</span>
+                <button class="qty-btn">+</button>
+            </div>
+
+            <div class="extra-box">
+                <span class="extra-title">Turbine seu Burger</span>
+                <label class="checkbox-group">
+                    <span><input type="checkbox"> Bacon Crispy</span>
+                    <span style="color: var(--primary-red);">+ R$ 4,50</span>
+                </label>
+                <label class="checkbox-group">
+                    <span><input type="checkbox"> Queijo Prato Extra</span>
+                    <span style="color: var(--primary-red);">+ R$ 3,00</span>
+                </label>
+                <label class="checkbox-group">
+                    <span><input type="checkbox"> Picles Artesanal</span>
+                    <span style="color: var(--primary-red);">+ R$ 2,50</span>
+                </label>
+            </div>
+
+            <button class="buy-btn">
+                <span class="material-symbols-outlined">shopping_basket</span>
+                ADICIONAR AO PEDIDO
+            </button>
+            
+            <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; color: #999;">
+                <span class="material-symbols-outlined" style="font-size: 12px;">timer</span> 
+                Entrega estimada: 30-45 min
+            </p>
+        </div>   
+    </main>
+{% endblock %}
+</body>
+</html>
