@@ -15,7 +15,7 @@ def recuperar_carrinho(usuario:str)->list:
                     FROM carrinhos
                     INNER JOIN itens_carrinhos ON carrinhos.cod_carrinho = itens_carrinhos.cod_carrinho
                     INNER JOIN produtos ON produtos.codigo = itens_carrinho.cod_produto
-
+                    WHERE usuarios.usuario = "Carlos";
                    """)
 
     produto = cursor.fetchall()
