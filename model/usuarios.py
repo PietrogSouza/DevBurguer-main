@@ -20,7 +20,7 @@ class Usuarios():
 
         conexao, cursor = conectar()
         cursor.execute("""
-                        select * from usuarios WHERE usuario = %s AND senha = $s
+                        select * from usuarios WHERE usuario = %s AND senha = %s
                        """,
                        (usuario, senha))
         resultado = cursor.fetchone()

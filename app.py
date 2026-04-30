@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
+from model.carrinho import recuperar_carrinho
 from model.produto import capturando_produtos, capturando_destaques, capturando_produto 
 from model.usuarios import Usuarios
 
+
 app = Flask(__name__)
 
-app.secret_key = "banana_loca"
+app.secret_key = "banana_local"
 
 @app.route("/")
 def pagina_principal():
@@ -21,8 +23,12 @@ def pagina_pagina2(codigo):
 
     return render_template("pagina2.html", rcp = rcp)
 
-@app.route("/cadastrar", methods=["GET"])
-def cadastrar():
+@app.route("/login", methods=["GET"])
+def pagina_login():
+    return render_template("/login.html")
+
+@app.route("/cadastrar", methods=["POST"])
+def pagina_cadastro():
     
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
@@ -33,17 +39,18 @@ def cadastrar():
 
     return render_template("/login.html")
 
+
+
 @app.route("/login/usuario", methods=["POST"])
-def pagina_login():
+def login():
     usuario = request.form.get("usuario")
     senha = request.form.get("senha")
 
-    resultado = usuario.logar(usuario, senha)
-    return render_template("login.html")
+    resultado = Usuarios.logar(usuario, senha)
 
-    if not resultado:
+    if resultado:
         session["usuario_logado"] = resultado
-        return redirect()
+        return redirect("/")
     
 @app.route('/carrinho')
 def ver_carrinho():
@@ -55,6 +62,15 @@ def ver_carrinho():
     
     return render_template('carrinho.html', carrinho=itens, total=f"{total:.2f}".replace('.', ','))
 
+@app.route("/api/get/carrinho", methods=["GET"])
+def api_get_carrinho():
+    if "usuario_logado" in session:
+        usuario = session["usuario_logado"]["usuario"]
+        carrinho = recuperar_carrinho(usuario)
+        return jsonify(carrinho), 200
+    else:
+        return jsonify({"message":"Usuário não logado"}), 401
+    
 
 
 if __name__=="__main__":

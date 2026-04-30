@@ -1,5 +1,5 @@
-function mostrar_carrinho() {
-    const reesposta = await fetch("http://10.110.134.2:8080/api/get/carrinho")
+async function mostrar_carrinho() {
+    const reesposta = await fetch("/api/get/carrinho")
 
     if (reesposta.ok) {
         alert("ERRO AO CARREGAR CARRINHO!")
@@ -15,7 +15,7 @@ function mostrar_carrinho() {
 
             total += dado.preco
 
-            let linha = ` <img src= "${dado.foto}" alt="Classic Dev" class="card__image"/>
+            let linha = `<img src= "${dado.foto}" alt="Classic Dev" class="card__image"/>
               </div>
                 <div class="card__body">
                     <h3 class="card__title">${dado.produto}</h3>
