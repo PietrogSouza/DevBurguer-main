@@ -71,6 +71,8 @@ def api_get_carrinho():
     else:
         return jsonify({"message":"Usuário não logado"}), 401
     
+@app.route
+    
 
 
 if __name__=="__main__":
