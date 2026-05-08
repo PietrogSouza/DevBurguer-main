@@ -9,3 +9,8 @@ values("X- Salada", "Lanche com uma carne especial", 54.00, 1, "https://vocegast
 
 insert into produtos(produto, descricao, preco, destaque, foto, disponibilidade)
 values("Godo Burguer", "Lanche com uma carne especial", 54.00, 1, "https://cloudfront-us-east-1.images.arcpublishing.com/estadao/77XTHHCCLBEXLC2Y5RK4PN37CE.jpg", 1);
+
+
+INSERT INTO `dev_burguer`.`usuarios` (`nome`, `usuario`, `senha`) VALUES ('Pietro', 'pietro123', '102030');
+
+INSERT INTO `dev_burguer`.`carrinhos` (`usuario`, `finalizado`) VALUES ('pietro123', '0');

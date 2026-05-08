@@ -42,21 +42,24 @@ def inserir_item(usuario,cod_produto, quantidade=1):
         codigo_carrinho = resultado_carrinho["cod_carrinho"]
     else:
         cursor.execute("""
-                        INSERT INTO carrinhos (usuario)
-                        VALUES (%s);
+                        INSERT INTO carrinhos (usuario, finalizado)
+                        VALUES (%s,0);
 
                         """,[usuario])
         codigo_carrinho = cursor.lastrowid
 
-        cursor.execute("""
-                        INSERT INTO itens_carrinhos
-                                (cod_carrinho, cod_produto, quantidade)
-                        VALUES
-                                (%s, %s, %s);
+    cursor.execute("""
+                       
+                    INSERT INTO itens_carrinhos
+                            (cod_carrinho, cod_produto, quantidade)
+                    VALUES
+                            (%s, %s, %s);
 
-                        """,[codigo_carrinho, cod_produto, quantidade])
+                    """,[codigo_carrinho, cod_produto, quantidade])
     conexao.commit()
-    cursor.close()
+    conexao.close()
+
+    return resultado_carrinho
 
     
     
